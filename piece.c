@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_work.c                                         :+:      :+:    :+:   */
+/*   piece.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scorion <scorion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/22 21:31:30 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/10/05 08:18:41 by scorion          ###   ########.fr       */
+/*   Created: 2020/10/05 08:51:01 by scorion           #+#    #+#             */
+/*   Updated: 2020/10/05 08:54:18 by scorion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int		new_fild(t_map *map)
+t_piece		read_piece(void)
 {
-	if ((map->field = ft_memalloc(map->h * map->w * sizeof(int))) == NULL)
-		return (-1);
-	return (1);
+	t_piece	new;
+
+
+// TODO
+	new.h = 5;
+	new.w = 6;
+	new.block = ft_memalloc(new.h * new.w * sizeof(int));
+	return (new);
 }

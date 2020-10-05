@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
+/*   By: scorion <scorion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:13:58 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/10/01 16:54:55 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/10/05 08:22:42 by scorion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		main(void)
 	get_size_map(&data);
 	new_fild(&(data.map));
 	get_field_map(&data.map);
-	data.map.field[2 * data.map.w + 3] = 1;
+	data.map.field[0 * data.map.w + 0] = 1;
 	print_field_map(&(data.map));
 	filling_map(&(data.map));
 
