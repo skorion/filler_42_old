@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 13:42:33 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/10/24 15:30:24 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/10/24 15:38:01 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	get_need_data(t_data *data)
 	{
 		get_maps(&(data->map), &line);
 	}
-	printf("\nw - %d\nh - %d\n", data->map.w, data->map.w);
-
 	get_next_line(STD_IN, &line);
 	if (line && !ft_strncmp(line, "Piece", 5))
 	{

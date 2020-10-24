@@ -6,12 +6,12 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:13:58 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/10/24 15:27:05 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/10/24 15:40:24 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-#include <stdio.h>
+
 
 void	ft_strsplit_free(char ***strsplit)
 {
@@ -47,6 +47,8 @@ void	print_field_map(t_map *map)
 	int j;
 
 	i = 0;
+	printf("\nw - %d\nh - %d\n", map->w, map->h);
+
 	printf("--------------------\n");
 	while (i < map->h)
 	{
@@ -104,19 +106,17 @@ int		main(void)
 
 
 	parse_player(&data);
-
-
 //	get_enemy(&data);
 	get_need_data(&data);
-		printf("player - %c\nememy - %c\n", data.map.player_symbol, data.map.enemy_symbol);
 //	new_fild(&(data.map));
 //	get_field_map(&data.map);
 //	data.map.field[5 * data.map.w + 7] = 1;
 //	data.map.field[4 * data.map.w + 3] = 1;
 	print_field_map(&(data.map));
+	printf("player - %c\nememy - %c\n", data.map.player_symbol, data.map.enemy_symbol);
+
 //	filling_map(&(data.map));
 // $$$ exec p2 : [players/xgeorge.filler]
-	printf("\nw - %d\nh - %d\n", data.map.w, data.map.w);
 //	print_field_map(&(data.map));
 
 	return (0);
