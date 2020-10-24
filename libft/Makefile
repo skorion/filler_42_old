@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: scorion <scorion@student.42.fr>            +#+  +:+       +#+         #
+#    By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/19 14:56:44 by xgeorge           #+#    #+#              #
-#    Updated: 2020/10/05 08:16:47 by scorion          ###   ########.fr        #
+#    Updated: 2020/10/24 12:27:51 by xgeorge          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ $(NAME): $(OBJ)
 	ranlib $(NAME)
 
 $(OBJ): %.o : %.c $(INC)
-	gcc -c $< -I $(INC)
+	gcc -c -Wall -Werror -Wextra $< -I $(INC)
 clean:
 	rm -f $(OBJ)
 

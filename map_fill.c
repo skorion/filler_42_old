@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 21:30:50 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/10/01 17:01:17 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/10/24 12:58:31 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		filling_map(t_map *map)
 	now = 0;
 	max = 0;
 
-	quence = malloc(map->h * map->w * sizeof(int));
+	quence = (int *)malloc(map->h * map->w * sizeof(int));
 	int i;
 	int j;
 
@@ -38,7 +38,7 @@ int		filling_map(t_map *map)
 		i++;
 	}
 
-		print_field_map(map);
+//	print_field_map(map);
 	while (now < max)
 	{
 		if ((quence[now] % map->w != (map->w - 1)) && (map->field[quence[now] + 1] == 0))
@@ -62,7 +62,7 @@ int		filling_map(t_map *map)
 			quence[max++] = quence[now] + map->w;
 		}
 		now++;
-	print_field_map(map);
+//	print_field_map(map);
 
 	}
 	return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   piece.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scorion <scorion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 08:51:01 by scorion           #+#    #+#             */
-/*   Updated: 2020/10/05 08:54:18 by scorion          ###   ########.fr       */
+/*   Updated: 2020/10/24 15:09:50 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ t_piece		read_piece(void)
 // TODO
 	new.h = 5;
 	new.w = 6;
-	new.block = ft_memalloc(new.h * new.w * sizeof(int));
+	new.field = ft_memalloc(new.h * new.w * sizeof(int));
 	return (new);
 }
