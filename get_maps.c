@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_maps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
+/*   By: scorion <scorion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 13:55:36 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/10/24 16:11:08 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/10/28 03:13:46 by scorion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	read_map(t_map *map)
 	{
 		j = 4;
 		get_next_line(STD_IN, &line);
-		while (j < map->w)
+		while (j < map->w + 4)
 		{
 			if (line[j] == '.')
 			{
@@ -46,9 +46,13 @@ int	read_map(t_map *map)
 			else
 			{
 				if (line[j] == map->player_symbol)
+				{
 					map->field[i * map->w + (j - 4)] = -1;
+				}
 				else
-					map->field[i * map->w + (j - 4)] = 2;
+				{
+					map->field[i * map->w + (j - 4)] = 1;
+				}
 			}
 			write(0, &line[j], 1);
 			j++;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+         #
+#    By: scorion <scorion@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/19 14:56:44 by xgeorge           #+#    #+#              #
-#    Updated: 2020/10/24 12:27:51 by xgeorge          ###   ########.fr        #
+#    Updated: 2020/10/28 03:00:35 by scorion          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OBJ = ft_bzero.o ft_isalpha.o ft_isdigit.o ft_isprint.o ft_memset.o ft_strlen.o 
 		ft_newdlist.o ft_addendlist.o ft_insertdlist.o ft_addstartdlist.o ft_removedlist.o ft_cleardlist.o ft_reduse.o \
 		ft_gcvt.o ft_ullpower.o ft_ullnumlen.o ft_strcat_loop.o ft_llinumlen.o ft_is_a_inf_or_nan.o get_next_line.o
 NAME = libft.a
-INC = includes/libft.h
+INC = includes
 FLAG = -Wall -Wextra -Werror
 
 all: $(NAME)
@@ -39,7 +39,7 @@ $(NAME): $(OBJ)
 	ranlib $(NAME)
 
 $(OBJ): %.o : %.c $(INC)
-	gcc -c -Wall -Werror -Wextra $< -I $(INC)
+	gcc -c $< -I $(INC)
 clean:
 	rm -f $(OBJ)
 
