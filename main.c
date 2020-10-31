@@ -6,12 +6,11 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:13:58 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/10/24 15:40:24 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/01 00:08:10 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
 
 void	ft_strsplit_free(char ***strsplit)
 {
@@ -63,8 +62,6 @@ void	print_field_map(t_map *map)
 	}
 }
 
-
-
 static int	validate_player(char **strsplit)
 {
 	if (ft_strsplit_len(strsplit) != 5
@@ -100,24 +97,63 @@ int			parse_player(t_data *data)
 	return (EXIT_SUCCESS);
 }
 
+void	print_field_piece(t_piece *piece)
+{
+	int i;
+	int j;
+
+	i = 0;
+	printf("\npiece\nw - %d\nh - %d\n", piece->w, piece->h);
+
+	printf("--------------------\n");
+	while (i < piece->h)
+	{
+		j = 0;
+		while (j < piece->w)
+		{
+			printf("%d", piece->field[i * piece->w + j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}
+
 int		main(void)
 {
 	t_data data;
 
 
 	parse_player(&data);
-//	get_enemy(&data);
-	get_need_data(&data);
+	data.map.field = NULL;
+	data.piece.field = NULL;
+
 //	new_fild(&(data.map));
-//	get_field_map(&data.map);
 //	data.map.field[5 * data.map.w + 7] = 1;
 //	data.map.field[4 * data.map.w + 3] = 1;
-	print_field_map(&(data.map));
+//	print_field_map(&(data.map));
+//	print_field_piece(&(data.piece));
+
+	while (get_need_data(&data) > 0)
+	{
+		filling_map(&(data.map));
+		data.solution = get_solution(&(data.map), &(data.solution));
+
+		print_field_map(&(data.map));
+		print_field_piece(&(data.piece));
+
+
+
+		free(data.piece.field);
+		data.piece.field = NULL;
+	}
+
 	printf("player - %c\nememy - %c\n", data.map.player_symbol, data.map.enemy_symbol);
 
 //	filling_map(&(data.map));
 // $$$ exec p2 : [players/xgeorge.filler]
 //	print_field_map(&(data.map));
 
+	del_data(&data);
 	return (0);
 }

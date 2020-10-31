@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 21:30:50 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/10/24 12:58:31 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/10/31 21:57:01 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,29 @@ int		filling_map(t_map *map)
 			map->field[quence[now] + map->w] = map->field[quence[now]] + 1;
 			quence[max++] = quence[now] + map->w;
 		}
+
+
+		if ((quence[now] % map->w != (map->w - 1)) && (map->field[quence[now] + 1] + 1 < map->field[quence[now]]) && (map->field[quence[now] + 1] != -1))
+		{
+			map->field[quence[now]]   = map->field[quence[now] + 1] + 1;
+		}
+		if ((quence[now] % map->w != 0) && (map->field[quence[now] - 1] + 1 < map->field[quence[now]]) && (map->field[quence[now] - 1] != -1))
+		{
+			map->field[quence[now]] = map->field[quence[now] - 1] + 1;
+		}
+		if ((quence[now] / map->w != (0)) && (map->field[quence[now] - map->w] + 1 < map->field[quence[now]]) && (map->field[quence[now] - map->w] != -1))
+		{
+			map->field[quence[now]]  = map->field[quence[now] - map->w] + 1;
+		}
+		if ((quence[now] / map->w != (map->h - 1)) && (map->field[quence[now] + map->w] + 1 < map->field[quence[now]]) && (map->field[quence[now] + map->w] != -1))
+		{
+			map->field[quence[now]] = map->field[quence[now] + map->w] + 1;
+		}
+
 		now++;
 //	print_field_map(map);
-
 	}
+
+	free(quence);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_maps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scorion <scorion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 13:55:36 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/10/28 03:13:46 by scorion          ###   ########.fr       */
+/*   Updated: 2020/10/31 23:24:06 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ int		get_size_map(t_map *map, char *line)
 	while (line[i] != ' ')
 		i++;
 	map->w = ft_atoi(line + i);
-	if ((map->field = (int *)ft_memalloc(map->w * map->h * sizeof(int))) == NULL)
-		return (-1);
+	if (map->field == NULL)
+	{
+		if ((map->field = (int *)ft_memalloc(map->w * map->h * sizeof(int))) == NULL)
+			return (-1);
+	}
 	return (1);
 }
 
@@ -45,7 +48,8 @@ int	read_map(t_map *map)
 			}
 			else
 			{
-				if (line[j] == map->player_symbol)
+				if ((line[j] == map->player_symbol) ||
+				(line[j] == ft_tolower(map->player_symbol)))
 				{
 					map->field[i * map->w + (j - 4)] = -1;
 				}
@@ -54,11 +58,10 @@ int	read_map(t_map *map)
 					map->field[i * map->w + (j - 4)] = 1;
 				}
 			}
-			write(0, &line[j], 1);
 			j++;
 		}
+		ft_strdel(&line);
 		i++;
-		write(0, "\n", 1);
 	}
 	return (1);
 }
@@ -66,7 +69,7 @@ int	read_map(t_map *map)
 int	get_maps(t_map *map, char **line)
 {
 	get_size_map(map, *line);
-	free(*line);
+	ft_strdel(line);
 	get_next_line(STD_IN, line);
 	ft_strdel(line);
 	read_map(map);

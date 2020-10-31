@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.c                                             :+:      :+:    :+:   */
+/*   empty.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/22 21:54:50 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/10/31 23:22:11 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/10/31 21:42:39 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/10/31 21:44:04 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
-
-void	del_data(t_data *data)
+int	main(void)
 {
-	if (data->map.field != NULL)
-	{
-		free(data->map.field);
-		data->map.field = NULL;
-	}
-	if (data->piece.field != NULL)
-	{
-		free(data->piece.field);
-		data->piece.field = NULL;
-	}
-	return ;
+	return (0);
 }

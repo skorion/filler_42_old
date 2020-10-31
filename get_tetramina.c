@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 14:29:48 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/10/24 15:16:21 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/10/31 22:14:49 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int		get_size_tetr(t_piece *piece, char *line)
 	int i;
 
 	i = 6;
-	piece->w = ft_atoi(line + i);
+	piece->h = ft_atoi(line + i);
 	while (line[i] != ' ')
 		i++;
-	piece->h = ft_atoi(line + i);
+	piece->w = ft_atoi(line + i);
 	if ((piece->field = (int *)ft_memalloc(piece->w * piece->h * sizeof(int))) == NULL)
 		return (-1);
 	return (1);
@@ -39,7 +39,7 @@ void		get_tetr(t_piece *piece)
 		get_next_line(STD_IN, &line);
 		while (j < piece->w)
 		{
-			piece->field[i * piece->h + j] =
+			piece->field[i * piece->w + j] =
 								(line[j] == '*') ? 1 : 0;
 			j++;
 		}
@@ -51,6 +51,7 @@ void		get_tetr(t_piece *piece)
 int	get_tetramina(t_piece *piece, char **line)
 {
 	get_size_tetr(piece, *line);
+	ft_strdel(line);
 	get_tetr(piece);
 //	calc_map(piece);
 	ft_strdel(line);
