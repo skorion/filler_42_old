@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 20:25:01 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/01 00:06:42 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/01 03:23:32 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ t_piece						read_piece(void);
 void						del_data(t_data *data);
 void						print_field_map(t_map *map);
 t_solution					get_solution(t_map *map, t_piece *piece);
+void						print_solution(t_solution solution);
 #endif

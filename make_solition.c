@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 23:41:18 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/01 02:53:39 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/01 03:22:57 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,24 +129,35 @@ t_solution	more_best_solition(t_solution now, t_solution test)
 	{
 		if (now.cause[index].weight != test.cause[index].weight)
 		{
-			if (now.cause[index].coefficient < now.cause[index].coefficient)
+			if (now.cause[index].weight < now.cause[index].weight)
 				return (now);
 			else
-				if (now.cause[index].coefficient > now.cause[index].coefficient)
+				if (now.cause[index].weight > now.cause[index].weight)
 					return (test);
 		}
-		if (now.cause[index].weight != test.cause[index].weight)
+		if (now.cause[index].weight == test.cause[index].weight)
 		{
-			if (now.cause[index].coefficient < now.cause[index].coefficient)
+			if (now.cause[index].coefficient > now.cause[index].coefficient)
 				return (now);
 			else
-				if (now.cause[index].coefficient > now.cause[index].coefficient)
+				if (now.cause[index].coefficient < now.cause[index].coefficient)
 					return (test);
 		}
 		index++;
 	}
-
+	return (now);
 }
+
+
+void		print_solution(t_solution solution)
+{
+	ft_putnbr(solution.x);
+	ft_putchar(' ');
+	ft_putnbr(solution.y);
+	ft_putchar('\n');
+}
+
+
 
 
 t_solution	get_solution(t_map *map, t_piece *piece)

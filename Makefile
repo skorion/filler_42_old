@@ -6,7 +6,7 @@
 #    By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/01 15:30:23 by xgeorge           #+#    #+#              #
-#    Updated: 2020/10/24 15:12:34 by xgeorge          ###   ########.fr        #
+#    Updated: 2020/11/01 03:10:49 by xgeorge          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRC=	main.c\
 		map_work.c \
 		get_maps.c \
 		get_need_data.c \
-		get_tetramina.c
+		get_tetramina.c \
+		make_solition.c
 FLAG=-Wall -Wextra -Werror
 
 

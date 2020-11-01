@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:13:58 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/01 00:08:10 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/01 03:24:27 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,15 @@ int		main(void)
 	{
 		filling_map(&(data.map));
 		data.solution = get_solution(&(data.map), &(data.solution));
+		if (data.solution.exist == FALSE)
+		{
+			ft_putstr("0 0\n");
+			del_data(&data);
+			return (-1);
+		}
+		else
+			print_solution(data.solution);
+
 
 		print_field_map(&(data.map));
 		print_field_piece(&(data.piece));
