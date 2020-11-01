@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 23:41:18 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/01 05:58:59 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/01 08:12:53 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int			solution_exist(t_map *map, t_piece *piece, t_solution *solution)
 {
 	int	x;
 	int	y;
+	int	possibly;
 
+	possibly = 0;
 	if (solution->x + piece->w >= map->w)
 		return (FALSE);
 	if (solution->y + piece->h >= map->h)
@@ -42,6 +44,27 @@ int			solution_exist(t_map *map, t_piece *piece, t_solution *solution)
 			((map->field[(solution->y + y) * map->w + solution->x + x]) == 1))
 			&& (piece->field[y * piece->w + x] == 1))
 				return (FALSE);
+
+		if ((x + solution->x != (map->w - 1)) && (map->field[(solution->y + y) * map->w + x + solution->x + 1] == -1))
+		{
+			possibly = 1;
+		}
+		if ((x + solution->x != 0) && (map->field[(solution->y + y) * map->w + x + solution->x + 1] == -1))
+		{
+			possibly = 1;
+		}
+		if ((y + solution->y != (0)) && (map->field[(solution->y + y - 1) * map->w + x + solution->x] == -1))
+		{
+			possibly = 1;
+		}
+		if ((y + solution->y != (map->h - 1)) && (map->field[(solution->y + y + 1) * map->w + x + solution->x] == -1))
+		{
+			possibly = 1;
+		}
+			if (possibly == 0)
+				return (FALSE);
+
+
 			x++;
 		}
 		y++;
@@ -118,12 +141,10 @@ t_solution	get_solution(t_map *map, t_piece *piece)
 		{
 			init_solution(&test, test.x, test.y);
 			check_solution(&test, map, piece);
-//			print_test_solision(test);
 			ans = more_best_solition(test, ans);
 			test.x = test.x + 1;
 		}
 		test.y = test.y + 1;
 	}
-	ft_putnbr(ans.cause);
 	return (ans);
 }

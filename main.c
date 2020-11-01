@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:13:58 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/01 06:07:36 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/01 08:13:14 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,42 +123,25 @@ int		main(void)
 {
 	t_data data;
 
-
 	parse_player(&data);
 	data.map.field = NULL;
 	data.piece.field = NULL;
 
-//	new_fild(&(data.map));
-//	data.map.field[5 * data.map.w + 7] = 1;
-//	data.map.field[4 * data.map.w + 3] = 1;
-//	print_field_map(&(data.map));
-//	print_field_piece(&(data.piece));
-
-	while (get_need_data(&data) > 0)
+	while (1)
 	{
+		get_need_data(&data);
 		filling_map(&(data.map));
 		data.solution = get_solution(&(data.map), &(data.piece));
-//		write(STD_IN, "123", 3);
 		if (data.solution.exist == FALSE)
 		{
 			ft_putstr("0 0\n");
 			del_data(&data);
 			return (-1);
 		}
-		else
-			print_solution(data.solution);
-		print_field_map(&(data.map));
-		print_field_piece(&(data.piece));
+		print_solution(data.solution);
 		free(data.piece.field);
 		data.piece.field = NULL;
 	}
-
-	printf("player - %c\nememy - %c\n", data.map.player_symbol, data.map.enemy_symbol);
-
-//	filling_map(&(data.map));
-// $$$ exec p2 : [players/xgeorge.filler]
-//	print_field_map(&(data.map));
-
 	del_data(&data);
-	return (0);
+	exit (1);
 }
