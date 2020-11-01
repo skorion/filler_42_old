@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 23:41:18 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/01 08:12:53 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/01 09:13:55 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,15 @@ int			solution_exist(t_map *map, t_piece *piece, t_solution *solution)
 		x = 0;
 		while (x < piece->w)
 		{
-			if ((((map->field[(solution->y + y) * map->w + solution->x + x]) == -1) ||
-			((map->field[(solution->y + y) * map->w + solution->x + x]) == 1))
+			if ((((map->field[(solution->y + y) * map->w + solution->x + x]) == 1))
 			&& (piece->field[y * piece->w + x] == 1))
 				return (FALSE);
-
-		if ((x + solution->x != (map->w - 1)) && (map->field[(solution->y + y) * map->w + x + solution->x + 1] == -1))
-		{
-			possibly = 1;
-		}
-		if ((x + solution->x != 0) && (map->field[(solution->y + y) * map->w + x + solution->x + 1] == -1))
-		{
-			possibly = 1;
-		}
-		if ((y + solution->y != (0)) && (map->field[(solution->y + y - 1) * map->w + x + solution->x] == -1))
-		{
-			possibly = 1;
-		}
-		if ((y + solution->y != (map->h - 1)) && (map->field[(solution->y + y + 1) * map->w + x + solution->x] == -1))
-		{
-			possibly = 1;
-		}
-			if (possibly == 0)
+			if ((map->field[(solution->y + y) * map->w + x + solution->x]) == -1)
+			{
+				possibly++;
+			}
+			if (possibly != 1)
 				return (FALSE);
-
-
 			x++;
 		}
 		y++;
