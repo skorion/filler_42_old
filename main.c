@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:13:58 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/01 03:24:27 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/01 06:07:36 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int			parse_player(t_data *data)
 
 	line = NULL;
 	strsplit = NULL;
-	if (get_next_line(0, &line) != 1
+	if (get_next_line(STD_IN, &line) != 1
 		|| !(strsplit = ft_strsplit(line, ' '))
 		|| validate_player(strsplit) != EXIT_SUCCESS)
 	{
@@ -137,7 +137,8 @@ int		main(void)
 	while (get_need_data(&data) > 0)
 	{
 		filling_map(&(data.map));
-		data.solution = get_solution(&(data.map), &(data.solution));
+		data.solution = get_solution(&(data.map), &(data.piece));
+//		write(STD_IN, "123", 3);
 		if (data.solution.exist == FALSE)
 		{
 			ft_putstr("0 0\n");
@@ -146,13 +147,8 @@ int		main(void)
 		}
 		else
 			print_solution(data.solution);
-
-
 		print_field_map(&(data.map));
 		print_field_piece(&(data.piece));
-
-
-
 		free(data.piece.field);
 		data.piece.field = NULL;
 	}

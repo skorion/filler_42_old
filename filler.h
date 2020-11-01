@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 20:25:01 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/01 03:23:32 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/01 05:46:16 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FILLER_H
 
 # define STD_IN 0
-# define SCORE_CAUSE 4
+# define SCORE_CAUSE 100000
 # define TRUE 1
 # define FALSE -1
 # define BUFF_SIZE 100
@@ -37,18 +37,12 @@ typedef struct				s_piece
 	int						*field;
 }							t_piece;
 
-typedef struct				s_cause
-{
-	int						weight;
-	int						coefficient;
-}							t_cause;
-
 typedef struct				s_solution
 {
 	int						x;
 	int						y;
 	int						exist;
-	t_cause					cause[SCORE_CAUSE];
+	int						cause;
 }							t_solution;
 
 typedef struct				s_data
@@ -68,4 +62,5 @@ void						del_data(t_data *data);
 void						print_field_map(t_map *map);
 t_solution					get_solution(t_map *map, t_piece *piece);
 void						print_solution(t_solution solution);
+void	print_test_solision(t_solution sol);
 #endif

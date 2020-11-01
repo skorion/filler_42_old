@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 23:41:18 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/01 03:22:57 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/01 05:58:59 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,7 @@ void		init_solution(t_solution *solution, int x, int y)
 	solution->x = x;
 	solution->y = y;
 	solution->exist = FALSE;
-	while (index < SCORE_CAUSE)
-	{
-		solution->cause[index].weight = -1;
-		solution->cause[index].coefficient = -1;
-		index++;
-	}
+	solution->cause = 0;
 }
 
 int			solution_exist(t_map *map, t_piece *piece, t_solution *solution)
@@ -43,47 +38,15 @@ int			solution_exist(t_map *map, t_piece *piece, t_solution *solution)
 		x = 0;
 		while (x < piece->w)
 		{
-			if ((((map->field[(solution->y + y) * map->w + solution->x + x]) != -1) ||
-			((map->field[(solution->y + y) * map->w + solution->x + x]) != 1)) &&
-			(piece->field[y * piece->w + x] == 1))
+			if ((((map->field[(solution->y + y) * map->w + solution->x + x]) == -1) ||
+			((map->field[(solution->y + y) * map->w + solution->x + x]) == 1))
+			&& (piece->field[y * piece->w + x] == 1))
 				return (FALSE);
 			x++;
 		}
 		y++;
 	}
 	return (TRUE);
-}
-
-void	pop_cause(t_solution *solution, int may)
-{
-	int index;
-	t_solution tmp;
-
-	index = SCORE_CAUSE - 1;
-	while ((may) != index)
-	{
-		solution->cause[index] = solution->cause[index - 1];
-		index--;
-	}
-}
-
-void	push_cause(t_solution *solution, int weight)
-{
-	int	may;
-
-	may = 0;
-	while ((solution->cause[may].weight != weight) && (may < SCORE_CAUSE)
-		&& (solution->cause[may].weight < weight) && (solution->cause[may].weight != -1))
-		may++;
-	if (solution->cause[may].weight == weight)
-	{
-		solution->cause[may].coefficient++;
-		return ;
-	}
-	// need write
-	pop_cause(solution, may);
-	solution->cause[may].coefficient = 1;
-	solution->cause[may].weight = weight;
 }
 
 int		set_cause(t_solution *solution, t_map *map, t_piece *piece)
@@ -100,7 +63,7 @@ int		set_cause(t_solution *solution, t_map *map, t_piece *piece)
 			if ((((map->field[(solution->y + y) * map->w + solution->x + x]) != -1) ||
 			((map->field[(solution->y + y) * map->w + solution->x + x]) != 1)) &&
 			(piece->field[y * piece->w + x] == 1))
-				return (FALSE);
+				solution->cause = solution->cause + map->field[(solution->y + y) * map->w + solution->x + x];
 			x++;
 		}
 		y++;
@@ -118,36 +81,16 @@ void		check_solution(t_solution *solution, t_map *map, t_piece *piece)
 
 t_solution	more_best_solition(t_solution now, t_solution test)
 {
-	int index;
-
 	if (test.exist == FALSE)
 		return (now);
 	if ((now.exist == FALSE) && (test.exist == TRUE))
 		return (test);
-	index = 0;
-	while (index < SCORE_CAUSE)
-	{
-		if (now.cause[index].weight != test.cause[index].weight)
-		{
-			if (now.cause[index].weight < now.cause[index].weight)
-				return (now);
-			else
-				if (now.cause[index].weight > now.cause[index].weight)
-					return (test);
-		}
-		if (now.cause[index].weight == test.cause[index].weight)
-		{
-			if (now.cause[index].coefficient > now.cause[index].coefficient)
-				return (now);
-			else
-				if (now.cause[index].coefficient < now.cause[index].coefficient)
-					return (test);
-		}
-		index++;
-	}
+	if (now.cause < test.cause)
+		return (now);
+	else
+		return(test);
 	return (now);
 }
-
 
 void		print_solution(t_solution solution)
 {
@@ -167,16 +110,20 @@ t_solution	get_solution(t_map *map, t_piece *piece)
 
 	init_solution(&ans, 0, 0);
 	init_solution(&test, 0, 0);
+	ans.cause = 99999999;
 	while (test.y < map->h)
 	{
 		test.x = 0;
 		while (test.x < map->w)
 		{
+			init_solution(&test, test.x, test.y);
 			check_solution(&test, map, piece);
-			ans = more_best_solition(ans, test);
+//			print_test_solision(test);
+			ans = more_best_solition(test, ans);
 			test.x = test.x + 1;
 		}
 		test.y = test.y + 1;
 	}
+	ft_putnbr(ans.cause);
 	return (ans);
 }

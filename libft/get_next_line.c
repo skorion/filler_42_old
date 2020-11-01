@@ -5,101 +5,89 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/19 23:41:11 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/08/10 15:24:03 by xgeorge          ###   ########.fr       */
+/*   Created: 2019/09/10 18:40:53 by cnails            #+#    #+#             */
+/*   Updated: 2020/11/01 06:36:21 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-t_list		*get_list_dist(t_list **how, int needfd)
+char	*ret_word(char **str, int fd)
 {
-	t_list	*list;
-	char	*str;
+	int		a;
+	char	*s;
 
-	list = *how;
-	while ((list != NULL) && ((int)(list)->content_size) != needfd)
-		(list) = (list)->next;
-	if (!(list))
+	a = 0;
+	while (str[fd][a] != '\n' && str[fd][a])
+		a++;
+	if (!(s = (char *)malloc(sizeof(*s) * (a + 1))))
+		return (NULL);
+	a = 0;
+	while (str[fd][a] != '\n')
 	{
-		if ((str = ft_strnew(0)) == NULL)
-			return (NULL);
-		if (((list) = ft_lstnew(str, 1)) == NULL)
-		{
-			ft_strdel(&str);
-			return (NULL);
-		}
-		list->content_size = needfd;
-		ft_strdel(&str);
-		ft_lstadd(how, list);
+		s[a] = str[fd][a];
+		a++;
 	}
-	return (list);
+	s[a] = '\0';
+	return (s);
 }
 
-int			go_read(const int fd, char **content)
+int		get_n_alpha(char **str, int fd)
 {
-	int		ret;
-	char	byf[BUFF_SIZE + 1];
-	char	*tmpstr;
+	int i;
 
-	while ((ret = read(fd, byf, BUFF_SIZE)) > 0)
-	{
-		byf[ret] = '\0';
-		tmpstr = *content;
-		if ((*content = ft_strjoin(*content, byf)) == NULL)
-			return (-1);
-		ft_strdel(&tmpstr);
-		if (ft_strchr(*content, '\n'))
-			break ;
-	}
-	if (ret < 0)
-		return (-1);
-	if (ret == 0 && (*content == NULL || (*content)[0] == '\0'))
-		return (0);
-	return (1);
+	i = 0;
+	while (str[fd][i] != '\n' && str[fd][i])
+		i++;
+	return (i);
 }
 
-int			get_answer(char **content, char **line)
+int		get_line(char **str, char **line, int fd)
 {
-	size_t	len;
 	char	*tmp;
+	int		i;
 
-	len = 0;
-	while ((*content)[len] != '\n' && (*content)[len] != '\0')
-		len++;
-	if ((*content)[len] == '\n')
+	i = get_n_alpha(str, fd);
+	if (str[fd][i] == '\n')
 	{
-		if ((*line = ft_strsub(*content, 0, len)) == NULL)
-			return (-1);
-		(*line)[len] = '\0';
-		tmp = *content;
-		if ((*content = ft_strdup(&(tmp[len + 1]))) == NULL)
-			return (-1);
-		ft_strdel(&tmp);
+		*line = ret_word(str, fd);
+		tmp = ft_strdup(&str[fd][i + 1]);
+		free(str[fd]);
+		str[fd] = tmp;
+		if (str[fd][0] == '\0')
+			ft_strdel(&str[fd]);
 	}
 	else
 	{
-		if ((*line = ft_strsub(*content, 0, len)) == NULL)
-			return (-1);
-		ft_strdel(content);
+		*line = ft_strdup(str[fd]);
+		ft_strdel(&str[fd]);
 	}
 	return (1);
 }
 
-int			get_next_line(const int fd, char **line)
+int		get_next_line(const int fd, char **line)
 {
-	static	t_list	*top;
-	int				cast;
-	t_list			*tmp;
+	int			a;
+	char		*tmp;
+	char		buf[BUFF_SIZE + 1];
+	static char	*str[11000];
 
-	if (fd < 0 || !(line))
+	if (fd < 0 || !line)
 		return (-1);
-	*line = NULL;
-	if ((tmp = get_list_dist(&top, fd)) == NULL)
+	while ((a = read(fd, buf, BUFF_SIZE)) > 0)
+	{
+		buf[a] = '\0';
+		if (str[fd] == NULL)
+			str[fd] = ft_strnew(0);
+		tmp = ft_strjoin(str[fd], buf);
+		free(str[fd]);
+		str[fd] = tmp;
+		if (ft_strchr(buf, '\n'))
+			break ;
+	}
+	if (a < 0)
 		return (-1);
-	if ((cast = go_read(fd, (char **)&(tmp->content))) <= 0)
-		return (cast);
-	if (get_answer((char **)&(tmp->content), line) < 0)
-		return (-1);
-	return (1);
+	if (a == 0 && (!str[fd] || str[fd][0] == '\0'))
+		return (0);
+	return (get_line(str, line, fd));
 }
