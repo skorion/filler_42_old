@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_solition.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
+/*   By: scorion <scorion@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 23:41:18 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/01 09:13:55 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/02 20:09:27 by scorion          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void		init_solution(t_solution *solution, int x, int y)
 {
-	int index;
-
-	index = 0;
 	solution->x = x;
 	solution->y = y;
 	solution->exist = FALSE;
@@ -30,9 +27,9 @@ int			solution_exist(t_map *map, t_piece *piece, t_solution *solution)
 	int	possibly;
 
 	possibly = 0;
-	if (solution->x + piece->w >= map->w)
+	if (solution->x + piece->w - 1 >= map->w)
 		return (FALSE);
-	if (solution->y + piece->h >= map->h)
+	if (solution->y + piece->h - 1 >= map->h)
 		return (FALSE);
 	y = 0;
 	while (y < piece->h)
@@ -43,16 +40,17 @@ int			solution_exist(t_map *map, t_piece *piece, t_solution *solution)
 			if ((((map->field[(solution->y + y) * map->w + solution->x + x]) == 1))
 			&& (piece->field[y * piece->w + x] == 1))
 				return (FALSE);
-			if ((map->field[(solution->y + y) * map->w + x + solution->x]) == -1)
+			if (((map->field[(solution->y + y) * map->w + x + solution->x]) == -1)
+			&& (piece->field[y * piece->w + x] == 1))
 			{
 				possibly++;
 			}
-			if (possibly != 1)
-				return (FALSE);
 			x++;
 		}
 		y++;
 	}
+	if (possibly != 1)
+		return (FALSE);
 	return (TRUE);
 }
 
@@ -101,9 +99,9 @@ t_solution	more_best_solition(t_solution now, t_solution test)
 
 void		print_solution(t_solution solution)
 {
-	ft_putnbr(solution.x);
-	ft_putchar(' ');
 	ft_putnbr(solution.y);
+	ft_putchar(' ');
+	ft_putnbr(solution.x);
 	ft_putchar('\n');
 }
 
