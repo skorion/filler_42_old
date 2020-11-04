@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scorion <scorion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:13:58 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/02 20:11:50 by scorion          ###   ########.fr       */
+/*   Updated: 2020/11/04 22:36:35 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,21 +130,7 @@ int		main(void)
 	while (1)
 	{
 		get_need_data(&data);
-		if (data.piece.field == NULL)
-			continue ;
-		filling_map(&(data.map));
-///		print_field_map(&(data.map));
-		data.solution = get_solution(&(data.map), &(data.piece));
-		if (data.solution.exist == FALSE)
-		{
-			ft_putstr("0 0\n");
-			del_data(&data);
-			return (-1);
-		}
-		print_solution(data.solution);
-		free(data.piece.field);
-		data.piece.field = NULL;
 	}
 	del_data(&data);
-	exit (1);
+	return (1);
 }

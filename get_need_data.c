@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_need_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scorion <scorion@student.42.fr>            +#+  +:+       +#+        */
+/*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 13:42:33 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/02 20:19:43 by scorion          ###   ########.fr       */
+/*   Updated: 2020/11/04 21:14:59 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,28 @@ int	get_need_data(t_data *data)
 	{
 		get_maps(&(data->map), &line);
 		ft_strdel(&line);
-		return (1);
 	}
 	else if (line && !ft_strncmp(line, "Piece", 4))
 	{
 		get_tetramina(&(data->piece), &line);
+
+
+
+		filling_map(&(data->map));
+///		print_field_map(&(data.map));
+		data->solution = get_solution(&(data->map), &(data->piece));
+		if (data->solution.exist == FALSE)
+		{
+			ft_putstr("0 0\n");
+			del_data(data);
+			exit (1);
+		}
+		print_solution(data->solution);
+		free(data->piece.field);
+		data->piece.field = NULL;
+
+
+
 		return (1);
 	}
 	ft_strdel(&line);

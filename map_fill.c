@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 21:30:50 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/10/31 21:57:01 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/04 21:30:09 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,23 @@ int		filling_map(t_map *map)
 		{
 			map->field[quence[now]] = map->field[quence[now] + map->w] + 1;
 		}
-
 		now++;
 //	print_field_map(map);
+	}
+
+
+
+	i = 0;
+	while (i < map->h)
+	{
+		j = 0;
+		while (j < map->w)
+		{
+			if (map->field[i * map->h + j] == 0)
+				map->field[i * map->h + j] = map->h + map->w;
+			j++;
+		}
+		i++;
 	}
 
 	free(quence);
