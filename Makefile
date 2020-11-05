@@ -1,30 +1,34 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/10/01 15:30:23 by xgeorge           #+#    #+#              #
-#    Updated: 2020/11/05 05:03:28 by xgeorge          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-SRC=	main.c\
-		data.c\
-		map_fill.c\
-		map_work.c \
-		get_maps.c \
-		get_need_data.c \
-		get_tetramina.c \
-		make_solition.c \
-		solition.c
 FLAG=-Wall -Wextra -Werror
-
 
 LIBA=libft.a
 
 NAME=xgeorge.filler
 
-all:
-	gcc -o $(NAME) $(FLAG) $(SRC) $(LIBA)
+SRCS := main.c
+SRCS +=	data.c
+SRCS +=	get_maps.c
+SRCS +=	get_need_data.c
+SRCS += get_tetramina.c
+SRCS += make_solition.c
+SRCS += map_fill.c
+SRCS += map_work.c
+SRCS += solition.c
+
+OBJ = $(SRCS:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	@make -C libft
+	@gcc -o $(NAME) $(FLAG) $(OBJ) libft/libft.a
+	@echo "Filler done"
+
+clean:
+	@make clean -C libft
+	@rm -f $(OBJ)
+
+fclean: clean
+	@make fclean -C libft
+	@rm -f $(NAME)
+
+re: fclean all
