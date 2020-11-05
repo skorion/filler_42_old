@@ -6,13 +6,13 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 05:15:48 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/05 05:15:55 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/05 05:30:53 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LIBFT_H
 # define FT_LIBFT_H
-# define BUFF_SIZE 1000
+# define BUFF_SIZE 1
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
