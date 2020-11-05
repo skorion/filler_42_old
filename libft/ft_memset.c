@@ -5,26 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 14:17:55 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:25 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:09:43 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:09:44 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *a, int c, size_t n)
 {
-	unsigned char	*adres;
-	unsigned char	elem;
-	size_t			iter;
+	unsigned char	*i;
 
-	adres = (unsigned char *)b;
-	elem = (unsigned char)c;
-	iter = 0;
-	while (iter < len)
-	{
-		adres[iter] = elem;
-		iter++;
-	}
-	return (adres);
+	i = (unsigned char*)a;
+	while (n-- > 0)
+		*i++ = (unsigned char)c;
+	return (a);
 }

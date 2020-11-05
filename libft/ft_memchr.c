@@ -5,23 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 17:51:16 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:29 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:09:15 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:09:16 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char *adres;
+	unsigned char	*a;
+	unsigned char	k;
+	int				i;
 
-	adres = (unsigned char *)s;
+	i = 0;
+	k = (unsigned char)c;
+	a = (unsigned char *)s;
 	while (n-- > 0)
 	{
-		if (adres[0] == (unsigned char)c)
-			return (adres);
-		adres++;
+		if (a[i] == k)
+			return (a + i);
+		i++;
 	}
-	return (NULL);
+	return (0);
 }

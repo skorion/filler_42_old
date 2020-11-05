@@ -5,21 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 02:14:51 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:50:52 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:12:32 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:12:33 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int		ft_strncmp(const char *str1, const char *str2, int n)
 {
-	while ((*s1 != '\0' || *s2 != '\0') && n-- > 0)
+	int i;
+
+	i = 0;
+	while (str2[i] == str1[i] && n != 0 && str2[i] && str1[i])
 	{
-		if (*s1 != *s2)
-			return ((int)((unsigned char)*s1 - (unsigned char)*s2));
-		s1++;
-		s2++;
+		i++;
+		n--;
 	}
-	return (0);
+	if (n == 0)
+		return (0);
+	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
 }

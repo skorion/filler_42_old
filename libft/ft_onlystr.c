@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_onlystr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 05:09:33 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/05 05:09:34 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:09:48 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:09:49 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_memdel(void **ap)
+int		ft_onlystr(char *str)
 {
-	if (ap)
+	int i;
+
+	i = 0;
+	while (str[i])
 	{
-		free(*ap);
-		*ap = NULL;
+		if (!(ft_isalpha(str[i])))
+			return (0);
+		i++;
 	}
+	return (1);
 }

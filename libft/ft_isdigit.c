@@ -5,14 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 22:56:27 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:36 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:07:49 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:07:50 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 int		ft_isdigit(int c)
 {
-	return (c >= '0' && c <= '9') ? 1 : 0;
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

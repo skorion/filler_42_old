@@ -5,33 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 22:54:05 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/08/07 06:36:45 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:08:49 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:08:50 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*new;
-	t_list	*tmp;
+	t_list *list;
+	t_list *new;
 
+	list = f(lst);
+	new = list;
 	if (!lst || !f)
 		return (NULL);
-	if ((new = f(lst)) == NULL)
-		return (NULL);
-	tmp = new;
-	if (lst->next)
-		lst = lst->next;
-	else
-		return (new);
-	while (lst)
+	while (lst->next)
 	{
-		if ((tmp->next = f(lst)) == NULL)
-			return (NULL);
-		tmp = tmp->next;
 		lst = lst->next;
+		if (!(list->next = f(lst)))
+			return (NULL);
+		list = list->next;
 	}
 	return (new);
 }

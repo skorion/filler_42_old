@@ -5,14 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 14:37:23 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:50:27 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:06:49 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:06:51 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero(void *b, size_t len)
 {
-	ft_memset(s, 0, n);
+	unsigned char	*a;
+
+	a = (unsigned char *)b;
+	while (len-- > 0)
+		*a++ = '\0';
 }

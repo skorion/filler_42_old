@@ -5,38 +5,48 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 16:12:59 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:34 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:08:11 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:08:13 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-char	*ft_itoa(int n)
+static int		ft_numlen(long long nb)
 {
-	char	*ans;
-	size_t	len;
-	size_t	sign;
+	if (nb < 0)
+		return (1 + ft_numlen(nb * -1));
+	if (nb >= 10)
+		return (1 + ft_numlen(nb / 10));
+	else
+		return (1);
+}
 
-	sign = 0;
-	len = ft_numlen(n);
-	if ((ans = ft_strnew(len)) == NULL)
+char			*ft_itoa(long long n)
+{
+	char	*str;
+	int		i;
+
+	i = ft_numlen(n);
+	if (!(str = (char *)malloc(sizeof(char) * (ft_numlen(n) + 1))))
 		return (NULL);
+	str[i--] = '\0';
+	if (n == -2147483648)
+	{
+		str[1] = '2';
+		n = -147483648;
+	}
+	if (n == 0)
+		str[0] = '0';
 	if (n < 0)
 	{
-		sign = 1;
-		if (n == -2147483648)
-		{
-			ft_strcpy(ans, "-2147483648");
-			return (ans);
-		}
-		ans[0] = '-';
-		n = -n;
+		n = n * -1;
+		str[0] = '-';
 	}
-	while (sign < len--)
+	while (n > 0)
 	{
-		ans[len] = n % 10 + '0';
+		str[i--] = n % 10 + '0';
 		n = n / 10;
 	}
-	return (ans);
+	return (str);
 }

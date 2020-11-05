@@ -5,25 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 10:11:22 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:11 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:11:48 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:11:49 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_striteri(char *s, void (*f)(unsigned int, char *s))
 {
-	unsigned int	index;
+	int i;
 
-	index = 0;
-	if (!s)
-		return ;
-	if (!f)
-		return ;
-	while (s[index] != '\0')
+	i = 0;
+	if (s && f)
 	{
-		(*f)(index, &s[index]);
-		index++;
+		while (*s)
+		{
+			f(i, s);
+			i++;
+			s++;
+		}
 	}
 }

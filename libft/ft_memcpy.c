@@ -5,18 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 15:05:03 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:27 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:09:28 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:09:29 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	if (dst == NULL && src == NULL)
+	unsigned char	*a;
+	unsigned char	*b;
+
+	a = (unsigned char *)dest;
+	b = (unsigned char *)src;
+	if (!(a) && !(b))
 		return (NULL);
 	while (n-- > 0)
-		((unsigned char *)dst)[n] = ((unsigned char *)src)[n];
-	return (dst);
+		*a++ = *b++;
+	return (dest);
 }

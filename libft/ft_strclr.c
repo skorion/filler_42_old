@@ -5,17 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 09:58:03 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:16 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:11:08 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:11:09 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 void	ft_strclr(char *s)
 {
-	if (!s)
-		return ;
-	while (*s)
-		*s++ = 0;
+	if (s)
+		ft_memset(s, '\0', ft_strlen(s));
 }

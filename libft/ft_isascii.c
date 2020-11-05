@@ -5,14 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 02:15:24 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:36 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:07:44 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:07:45 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 int		ft_isascii(int c)
 {
-	return (c >= 0 && c <= 127) ? 1 : 0;
+	if (c >= 0 && c <= 127)
+		return (1);
+	return (0);
 }

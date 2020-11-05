@@ -5,27 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 19:52:02 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:13 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:11:31 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:11:32 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *src)
 {
-	int		iter;
-	char	*ans;
+	int		i;
+	int		a;
+	char	*str;
 
-	iter = 0;
-	if (ft_strlen(s1) + 1 == 0
-			|| !(ans = (char *)ft_memalloc(sizeof(char) * ft_strlen(s1) + 1)))
+	i = 0;
+	a = 0;
+	while (src[a])
+		a++;
+	if (!(str = (char *)malloc(sizeof(*str) * (a + 1))))
 		return (NULL);
-	while (s1[iter] != '\0')
+	while (i < a)
 	{
-		ans[iter] = s1[iter];
-		iter++;
+		str[i] = src[i];
+		i++;
 	}
-	ans[iter] = '\0';
-	return (ans);
+	str[i] = '\0';
+	return (str);
 }

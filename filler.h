@@ -6,7 +6,7 @@
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 20:25:01 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/01 05:46:16 by xgeorge          ###   ########.fr       */
+/*   Updated: 2020/11/05 05:05:37 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 # define SCORE_CAUSE 100000
 # define TRUE 1
 # define FALSE -1
-# define BUFF_SIZE 100
-# include "libft/includes/libft.h"
-#include <stdio.h>
+# include "libft/libft.h"
+# include <stdio.h>
 
 typedef struct				s_map
 {
@@ -62,5 +61,8 @@ void						del_data(t_data *data);
 void						print_field_map(t_map *map);
 t_solution					get_solution(t_map *map, t_piece *piece);
 void						print_solution(t_solution solution);
-void	print_test_solision(t_solution sol);
+void						print_test_solision(t_solution sol);
+t_solution					more_best_solition(t_solution now, t_solution test);
+void						init_solution(t_solution *solution, int x, int y);
+void						print_solution(t_solution solution);
 #endif

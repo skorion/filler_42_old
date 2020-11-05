@@ -1,22 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_lennwords.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 05:09:33 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/05 05:09:34 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:08:19 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:08:21 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_memdel(void **ap)
+int		ft_lennwords(char *str, int n)
 {
-	if (ap)
+	int i;
+	int a;
+
+	i = 0;
+	a = 0;
+	while (str[i])
 	{
-		free(*ap);
-		*ap = NULL;
+		if (str[i] == ' ')
+			i++;
+		if (n == 0)
+		{
+			while (str[i] != ' ' && str[i])
+			{
+				i++;
+				a++;
+			}
+		}
+		n--;
+		while (str[i] != ' ' && str[i])
+			i++;
 	}
+	return (a);
 }

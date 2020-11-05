@@ -5,36 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 03:39:22 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:41 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:06:42 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:06:44 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 int		ft_atoi(const char *str)
 {
-	int					sign;
-	unsigned long long	body;
+	long long int i[4];
 
-	sign = 1;
-	body = 0;
-	while (ft_invisible(*str) == 1)
-		str++;
-	if (*str == '-' || *str == '+')
-		sign = (*str++ == '-') ? -1 : 1;
-	while (ft_isdigit(*str) > 0)
+	i[1] = 0;
+	i[2] = 0;
+	i[3] = 1;
+	while ((str[i[1]] >= 9 && str[i[1]] <= 13) || str[i[1]] == ' ')
+		i[1]++;
+	if (str[i[1]] == '+' || str[i[1]] == '-')
 	{
-		if (sign == 1 && (body > __LONG_LONG_MAX__ / 10 || body * 10
-		> (unsigned long long)__LONG_LONG_MAX__
-							+ 1 - (unsigned long long)(*str - '0')))
-			return (-1);
-		if (sign == -1 && (body > __LONG_LONG_MAX__ || body * 10
-		> (unsigned long long)__LONG_LONG_MAX__
-							+ 1 - (unsigned long long)(*str - '0')))
-			return (0);
-		body = body * 10 + *str - '0';
-		str++;
+		if (str[i[1]] == '-')
+			i[3] = -1;
+		i[1]++;
 	}
-	return (sign * (int)body);
+	while (str[i[1]] >= '0' && str[i[1]] <= '9')
+	{
+		i[2] = i[2] * 10 + (str[i[1]] - '0');
+		i[1]++;
+	}
+	if (i[2] * i[3] > 0)
+		if (i[3] < 0)
+			return (0);
+	if (i[2] * i[3] < 0)
+		if (i[3] > 0)
+			return (-1);
+	return ((int)(i[2] * i[3]));
 }

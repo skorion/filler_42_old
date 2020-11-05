@@ -5,14 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 22:56:27 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:50:42 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:13:40 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:13:41 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 int		ft_toupper(int c)
 {
-	return (c >= 'a' && c <= 'z') ? (c - 32) : c;
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
 }

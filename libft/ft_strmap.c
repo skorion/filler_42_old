@@ -5,31 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 11:56:12 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:50:55 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:12:14 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:12:15 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 char	*ft_strmap(char const *s, char (*f)(char))
 {
-	unsigned int		iter;
-	char				*ans;
+	int		i;
+	char	*str;
 
-	if (!f)
-		return (NULL);
-	if (!s)
-		return (NULL);
-	if (sizeof(char) * ft_strlen(s) + 1 < ft_strlen(s)
-		|| !(ans = (char *)ft_memalloc(sizeof(char) * ft_strlen(s) + 1)))
-		return (NULL);
-	iter = 0;
-	while (s[iter] != '\0')
+	i = 0;
+	if (s && f)
 	{
-		ans[iter] = (*f)(s[iter]);
-		iter++;
+		if (!(str = (char *)malloc(sizeof(char) * (ft_strlen((char *)s) + 1))))
+			return (NULL);
+		while (s[i])
+		{
+			str[i] = f(s[i]);
+			i++;
+		}
+		str[i] = '\0';
+		return (str);
 	}
-	ans[iter] = 0;
-	return (ans);
+	return (NULL);
 }

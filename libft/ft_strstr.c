@@ -5,35 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 00:26:53 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:50:46 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:13:16 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:13:17 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-char	*ft_strstr(const char *haystack, const char *needle)
+char	*ft_strstr(const char *str1, const char *str2)
 {
-	size_t	iter1;
-	size_t	iter2;
-	int		flag;
+	int i;
+	int a;
 
-	iter1 = 0;
-	if (*needle == '\0')
-		return ((char *)haystack);
-	while (haystack[iter1] != '\0')
+	i = 0;
+	if (!(*str2))
+		return ((char *)str1);
+	while (str1[i])
 	{
-		flag = 1;
-		iter2 = 0;
-		while (needle[iter2] != 0 && flag != -1)
+		a = 0;
+		if (str2[a] == str1[i])
 		{
-			if (haystack[iter1 + iter2] != needle[iter2])
-				flag = -1;
-			iter2++;
+			while (str2[a] == str1[i])
+			{
+				a++;
+				if (!str2[a])
+					return ((char *)&str1[i - a + 1]);
+				i++;
+			}
+			i -= a;
 		}
-		if (flag == 1)
-			return ((char *)&haystack[iter1]);
-		iter1++;
+		i++;
 	}
 	return (NULL);
 }

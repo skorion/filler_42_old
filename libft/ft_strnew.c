@@ -5,21 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 09:38:48 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:50:50 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:12:47 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:12:48 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 char	*ft_strnew(size_t size)
 {
-	char	*str;
+	char *str;
 
-	if (size + 1 < size)
-		return (NULL);
-	if (size + 1 == 0 || !(str = ft_memalloc(size + 1)))
-		return (NULL);
-	str = (char *)ft_memset(str, 0, size + 1);
-	return (str);
+	if (size + 1)
+	{
+		if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
+			return (NULL);
+		ft_memset(str, '\0', (size + 1));
+		return (str);
+	}
+	return (NULL);
 }

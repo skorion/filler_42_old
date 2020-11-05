@@ -5,17 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 22:43:42 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:34 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:08:27 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:08:28 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 void	ft_lstadd(t_list **alst, t_list *new)
 {
-	if (!(new) || !(alst))
-		return ;
-	new->next = *alst;
-	*alst = new;
+	if (alst && new)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
 }

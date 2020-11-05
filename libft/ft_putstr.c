@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 07:16:49 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:19 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:10:29 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:10:30 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 void	ft_putstr(char const *s)
 {
-	ft_putstr_fd(s, 1);
+	write(1, s, ft_strlen(s));
 }

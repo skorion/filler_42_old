@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_isprime.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/05 05:09:33 by xgeorge           #+#    #+#             */
-/*   Updated: 2020/11/05 05:09:34 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:07:54 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:07:56 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_memdel(void **ap)
+int		ft_isprime(int n)
 {
-	if (ap)
+	int i;
+
+	i = 2;
+	if (n < 2)
+		return (0);
+	while (i * i <= n)
 	{
-		free(*ap);
-		*ap = NULL;
+		if (n % i == 0)
+			return (0);
+		i++;
 	}
+	return (1);
 }

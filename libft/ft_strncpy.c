@@ -5,27 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 20:13:57 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:50:51 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:12:37 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:12:38 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+char	*ft_strncpy(char *dest, const char *scr, unsigned int n)
 {
-	size_t	iter;
+	unsigned int i;
 
-	iter = 0;
-	while (src[iter] != 0 && iter < len)
+	i = 0;
+	while (i < n && scr[i])
 	{
-		dst[iter] = src[iter];
-		iter++;
+		dest[i] = scr[i];
+		i++;
 	}
-	while (iter < len)
+	while (i < n)
 	{
-		dst[iter] = 0;
-		iter++;
+		dest[i] = '\0';
+		i++;
 	}
-	return (dst);
+	return (dest);
 }

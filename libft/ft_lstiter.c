@@ -5,20 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 22:48:19 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:50:29 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:08:44 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:08:45 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	if (!(lst) || !(f))
-		return ;
-	while (lst)
+	t_list *list;
+
+	list = lst;
+	if (lst && f)
 	{
-		f(lst);
-		lst = lst->next;
+		while (list)
+		{
+			f(list);
+			list = list->next;
+		}
 	}
 }

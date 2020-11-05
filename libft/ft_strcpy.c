@@ -5,23 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 20:04:22 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:14 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:11:20 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:11:21 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-char	*ft_strcpy(char *dst, const char *src)
+char	*ft_strcpy(char *dest, const char *scr)
 {
-	size_t	iter;
+	int i;
 
-	iter = 0;
-	while (src[iter] != '\0')
+	i = 0;
+	while (scr[i] != '\0')
 	{
-		dst[iter] = src[iter];
-		iter++;
+		dest[i] = scr[i];
+		i++;
 	}
-	dst[iter] = src[iter];
-	return (dst);
+	dest[i] = '\0';
+	return (dest);
 }

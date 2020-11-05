@@ -5,36 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 01:46:33 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:50:49 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:12:52 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:12:53 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *str1, const char *str2, int n)
 {
-	size_t	iter1;
-	size_t	iter2;
-	int		flag;
+	int i;
+	int a;
 
-	iter1 = 0;
-	if (*needle == '\0')
-		return ((char *)haystack);
-	while (haystack[iter1] != '\0' && iter1 < len)
+	i = 0;
+	if (!(*str2))
+		return ((char *)str1);
+	while (str1[i])
 	{
-		flag = 1;
-		iter2 = 0;
-		while (needle[iter2] != 0 && flag != -1)
+		a = 0;
+		if (str2[a] == str1[i])
 		{
-			if (haystack[iter1 + iter2] != needle[iter2]
-									|| iter1 + iter2 + 1 > len)
-				flag = -1;
-			iter2++;
+			while (str2[a] == str1[i])
+			{
+				a++;
+				if (!str2[a] && i < n)
+					return ((char *)&str1[i - a + 1]);
+				i++;
+			}
+			i -= a;
 		}
-		if (flag == 1)
-			return ((char *)&haystack[iter1]);
-		iter1++;
+		i++;
 	}
 	return (NULL);
 }

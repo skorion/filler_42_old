@@ -5,25 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 23:44:08 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:16 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:10:59 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:11:01 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *str, int c)
 {
-	char	*a;
+	int		i;
 
-	a = (char *)s;
-	while (*a)
+	i = 0;
+	while (str[i] != c)
 	{
-		if (*a == (char)c)
-			return (a);
-		a++;
+		if (!str[i])
+			return (NULL);
+		i++;
 	}
-	if (*a == c)
-		return (a);
-	return (NULL);
+	return ((char *)&str[i]);
 }

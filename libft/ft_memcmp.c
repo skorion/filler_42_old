@@ -5,27 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 18:38:30 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:28 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:09:22 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:09:23 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t			iter;
-	unsigned char	*adress1;
-	unsigned char	*adress2;
+	unsigned char	*a;
+	unsigned char	*b;
+	int				i;
 
-	iter = 0;
-	adress1 = (unsigned char *)s1;
-	adress2 = (unsigned char *)s2;
-	while (iter < n)
+	i = 0;
+	a = (unsigned char *)s1;
+	b = (unsigned char *)s2;
+	while (n-- > 0)
 	{
-		if (adress1[iter] != adress2[iter])
-			return (adress1[iter] - adress2[iter]);
-		iter++;
+		if (a[i] == b[i])
+			i++;
+		else
+			return (a[i] - b[i]);
 	}
 	return (0);
 }

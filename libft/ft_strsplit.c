@@ -5,77 +5,95 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/16 12:12:04 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:50:47 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:13:10 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:13:10 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-static size_t	ft_gt(char const *s, char c)
+static int		a(char *str, char c)
 {
-	size_t	size;
-	int		flag;
-	char	*byf;
+	int i;
+	int a;
 
-	byf = (char *)s;
-	flag = 0;
-	size = 0;
-	while (*byf != '\0')
+	i = 0;
+	a = 0;
+	while (str[i])
 	{
-		if (flag == 0 && *byf != c)
+		if (str[i] == c)
+			i++;
+		if (str[i] != c && str[i])
 		{
-			flag = 1;
-			size++;
+			a++;
+			while (str[i] != c && str[i])
+				i++;
 		}
-		if (flag == 1 && *byf == c)
-			flag = 0;
-		byf++;
 	}
-	return (size);
+	return (a);
 }
 
-static size_t	ft_gl(char const *s, char c)
+static int		r(char *str, char c)
 {
-	size_t	len;
+	int i;
+	int a;
 
-	len = 0;
-	while (s[len] != '\0' && s[len] != c)
-		len++;
-	return (len);
+	i = 0;
+	a = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			i++;
+		if (str[i] != c && str[i])
+		{
+			while (str[i] != c && str[i])
+			{
+				i++;
+				a++;
+			}
+		}
+		while (str[i] != c && str[i])
+			i++;
+	}
+	return (a);
 }
 
-static void		ft_init(size_t *o, size_t *o1)
+static char		**ft_free(char **str, int j)
 {
-	*o = 0;
-	*o1 = 0;
+	int i;
+
+	i = 0;
+	while (i < j)
+		free(str[i]);
+	free(str);
+	return (NULL);
 }
 
 char			**ft_strsplit(char const *s, char c)
 {
-	char	**tab;
-	int		flag;
-	size_t	index;
-	size_t	numindex;
+	int		i;
+	int		j;
+	char	**t;
 
-	ft_init(&numindex, &index);
-	flag = 0;
-	if (!s)
+	i = 0;
+	j = 0;
+	if (!s || (!(t = (char **)malloc(sizeof(char *) * (a((char *)s, c) + 1)))))
 		return (NULL);
-	if ((tab = (char **)ft_memalloc((ft_gt(s, c) + 1) * sizeof(char*))) == NULL)
-		return (NULL);
-	while (s[index] != '\0')
+	while (*s)
 	{
-		if (flag == 0 && s[index] != c)
+		while (*s == c && *s)
+			s++;
+		if (*s != c && *s)
 		{
-			flag = 1;
-			if ((tab[numindex] = ft_strnew(ft_gl(&s[index], c) + 1)) == NULL)
-				return (ft_clean_tab(tab));
-			ft_strncpy(tab[numindex++], &s[index], ft_gl(&s[index], c));
+			if (!(t[j] = (char *)malloc(sizeof(*t) * (r((char *)s, c) + 1))))
+				return (ft_free(t, j));
+			while (*s != c && *s)
+				t[j][i++] = (char)*s++;
+			t[j][i] = '\0';
+			i = 0;
+			j++;
 		}
-		if (s[index++] == c && flag == 1)
-			flag = 0;
 	}
-	tab[numindex] = NULL;
-	return (tab);
+	t[j] = NULL;
+	return (t);
 }

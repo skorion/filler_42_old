@@ -5,14 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 22:31:23 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:37 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:07:39 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:07:40 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 int		ft_isalpha(int c)
 {
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) ? 1 : 0;
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
 }

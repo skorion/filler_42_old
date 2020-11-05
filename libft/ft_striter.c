@@ -5,19 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 10:03:12 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:12 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:11:42 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:11:43 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 void	ft_striter(char *s, void (*f)(char *))
 {
-	if (!f)
-		return ;
-	if (!s)
-		return ;
-	while (*s)
-		(*f)((char *)s++);
+	if (s && f)
+	{
+		while (*s)
+		{
+			f(s);
+			s++;
+		}
+	}
 }

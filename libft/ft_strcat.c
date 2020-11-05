@@ -5,26 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 21:55:46 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:17 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:10:35 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:10:36 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+char	*ft_strcat(char *dest, const char *src)
 {
-	size_t	iter;
-	size_t	new;
+	int i;
+	int a;
 
-	new = 0;
-	iter = ft_strlen(s1);
-	while (s2[new] != '\0')
+	i = 0;
+	a = 0;
+	while (dest[i] != '\0')
+		i++;
+	while (src[a] != '\0')
 	{
-		s1[iter] = s2[new];
-		iter++;
-		new++;
+		dest[i] = src[a];
+		i++;
+		a++;
 	}
-	s1[iter] = s2[new];
-	return (s1);
+	dest[i] = '\0';
+	return (dest);
 }

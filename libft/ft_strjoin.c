@@ -5,45 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 13:10:02 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/22 21:47:42 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:11:54 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:11:55 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
-static char	*ft_savetimecat(char *s1, size_t len1, const char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	new;
+	char	*str;
+	int		i;
 
-	new = 0;
-	while (s2[new] != '\0')
+	i = 0;
+	if (s1 && s2)
 	{
-		s1[len1] = s2[new];
-		len1++;
-		new++;
+		if (!(str = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1)
+							+ ft_strlen((char *)s2) + 1))))
+			return (NULL);
+		while (*s1)
+			str[i++] = *s1++;
+		while (*s2)
+			str[i++] = *s2++;
+		str[i++] = '\0';
+		return (str);
 	}
-	s1[len1] = s2[new];
-	return (s1);
-}
-
-char		*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*ans;
-	size_t	s1len;
-	size_t	s2len;
-
-	if (!s1)
-		return (NULL);
-	if (!s2)
-		return (NULL);
-	s1len = ft_strlen(s1);
-	s2len = ft_strlen(s2);
-	if (s1len + s2len
-						< ft_max_t_size(s1len, s2len)
-		|| (ans = ft_strnew(s1len + s2len)) == NULL)
-		return (NULL);
-	ans = ft_savetimecat(ans, 0, s1);
-	ans = ft_savetimecat(ans, s1len, s2);
-	return (ans);
+	return (NULL);
 }

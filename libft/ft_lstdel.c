@@ -5,24 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: xgeorge <xgeorge@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 22:38:24 by xgeorge           #+#    #+#             */
-/*   Updated: 2019/10/20 01:51:33 by xgeorge          ###   ########.fr       */
+/*   Created: 2020/11/05 05:08:33 by xgeorge           #+#    #+#             */
+/*   Updated: 2020/11/05 05:08:34 by xgeorge          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
+#include "libft.h"
 
 void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	t_list	*tmp;
+	t_list *new;
+	t_list *list;
 
-	if (!(*alst) || !(del) || !(alst))
-		return ;
-	while ((*alst))
+	list = *alst;
+	while (list)
 	{
-		tmp = (*alst)->next;
-		ft_lstdelone(alst, del);
-		*alst = tmp;
+		new = list->next;
+		del(list->content, list->content_size);
+		free(list);
+		list = new;
 	}
-	ft_lstdelone(alst, del);
+	*alst = NULL;
 }
